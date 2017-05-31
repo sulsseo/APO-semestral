@@ -1,5 +1,6 @@
 #include "my_painter.h"
 
+// init constants
 const long double IMAGINARY_START = (JULIA_MAX * HEIGHT) / (WIDTH * -2.0);
 const long double REAL_STEP = JULIA_MAX / WIDTH;
 
@@ -7,10 +8,11 @@ const long double IMAGINARY_STEP = (-2.0 * IMAGINARY_START) / HEIGHT;
 
 long double previousX = 999.9, previousY = 999.9, previousImag = 999.9;
 
+// animation pictures memory
 long double animation_real[] = {-0.4, 0.285, 0.285, 0.45, -0.70176, -0.835, -0.8, -0.7269, 0};
 long double animation_imag[] = {0.6, 0, 0.01, 0.1428, -0.3842, -0.2321, 0.156, 0.1889, -0.8};
 
-
+// action lockers
 int displayInfo = FALSE;
 int animation = FALSE;
 
@@ -62,7 +64,8 @@ void point_iteration(uint16_t *julia_set,
 
     double value = this_iterations / JULIA_ITERATIONS;
 
-    // coloring inspiration https://cw.fel.cvut.cz/wiki/courses/b3b36prg/semestral-project/start
+    // coloring inspiration
+    // https://cw.fel.cvut.cz/wiki/courses/b3b36prg/semestral-project/start
     unsigned char red = (unsigned char) (9.0 * (1.0 - value) * value * value * value * 255.0);
     unsigned char green = (unsigned char) (15.0 * (1.0 - value) * (1.0 - value) * value * value * 255.0);
     unsigned char blue = (unsigned char) (8.5 * (1.0 - value) * (1.0 - value) * (1.0 - value) * value * 255.0);
@@ -97,9 +100,10 @@ void draw_fractal(long double *positionX,
     while (!*finished) {
         thread_lock.lock();
 
+        // green button to start or end animation
         if (!animation) {
 
-            // julia painter
+            // red button to display info on LCD
             if ((*red_click > 0) & !displayInfo) {
                 displayInfo = TRUE;
                 get_julia(julia_set, positionX, positionY, const_real, const_imag);
@@ -107,6 +111,7 @@ void draw_fractal(long double *positionX,
             } else if ((*red_click > 0) & displayInfo) {
                 displayInfo = FALSE;
                 get_julia(julia_set, positionX, positionY, const_real, const_imag);
+
 
             } else if ((*green_click > 0) & !animation) {
                 animation = TRUE;

@@ -32,10 +32,10 @@ void parlcd_delay(int msec);
 void parlcd_hx8357_init(unsigned char *parlcd_mem_base);
 
 /**
- * TODO docu
+ * Painter method. Can paint given data to LCD memory.
  *
- * @param data
- * @param parlcd_mem_base
+ * @param data - pointer to data for display
+ * @param parlcd_mem_base - memory base
  * */
 void draw_display(uint16_t *data, unsigned char *parlcd_mem_base);
 

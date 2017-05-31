@@ -21,13 +21,14 @@
 
 
 /**
- * TODO docu
+ * Main method for get new calculation of julia set.
+ * Save new picture to given pointer for updated values.
  *
- * @param julia_set
- * @param positionX
- * @param positionY
- * @param const_real
- * @param const_imag
+ * @param julia_set - pointer to data structure
+ * @param positionX - center position X
+ * @param positionY - center position Y
+ * @param const_real - real part of c constant
+ * @param const_imag - imaginary part of c constant
  */
 void get_julia(uint16_t *julia_set,
                long double *positionX,
@@ -36,17 +37,18 @@ void get_julia(uint16_t *julia_set,
                long double *const_imag);
 
 /**
- * TODO docu
+ * Drawing thread work function, on changing position pointers repaint new picture.
+ * Do some action on knob clicks.
  *
  * @param positionX
  * @param positionY
  * @param const_real
  * @param const_imag
- * @param red_click
- * @param green_click
- * @param blue_click
- * @param mutex
- * @param finished
+ * @param red_click - state of red button (0 - inactive, >0 click)
+ * @param green_click - state of green button
+ * @param blue_click - state of blue button
+ * @param mutex - locker
+ * @param finished - closing variable
  */
 void draw_fractal(long double *positionX,
                   long double *positionY,
@@ -59,15 +61,15 @@ void draw_fractal(long double *positionX,
                   bool *finished);
 
 /**
- * TODO docu
+ * Put single char in data matrix.
  *
- * @param data
- * @param c
- * @param row
- * @param column
- * @param color
- * @param background
- * @param scale
+ * @param data - prepared data matrix
+ * @param c - char to write
+ * @param row - coord
+ * @param column - coord
+ * @param color - char color definition
+ * @param background - background color definition
+ * @param scale - char size 1 - small, 8 - bi
  */
 void put_char_there(uint16_t data[HEIGHT*WIDTH],
                     char c,
@@ -78,16 +80,16 @@ void put_char_there(uint16_t data[HEIGHT*WIDTH],
                     int scale);
 
 /**
- * TODO docu
+ * Add text to given data matrix.
  *
- * @param data
- * @param single
- * @param row
- * @param col
- * @param color
- * @param background
- * @param scale
- * @param size
+ * @param data - prepared data matrix
+ * @param single - char sequence to write
+ * @param row - position coords
+ * @param col - position coords
+ * @param color - color for displayed text
+ * @param background - text background
+ * @param scale - regulation of text size 1 - small, 8 - big
+ * @param size - text buffer size
  */
 void write_to_data(uint16_t data[HEIGHT*WIDTH],
                    char *single,
@@ -99,15 +101,16 @@ void write_to_data(uint16_t data[HEIGHT*WIDTH],
                    int size);
 
 /**
- * TODO docu
+ * Point iteration method for coloring given pixel based on given complex number.
+ * Algoirthm given by computation of Julia set definition
  *
- * @param julia_set
- * @param real
- * @param imag
- * @param const_real
- * @param const_imag
- * @param i
- * @param j
+ * @param julia_set - pointer to data storage
+ * @param real - real part of complex number
+ * @param imag - imaginary part of complex number
+ * @param const_real - real part of complex number for constant in juliaset
+ * @param const_imag - imaginary part of complex number for constant in juliaset
+ * @param i - y coord
+ * @param j - x coord
  */
 void point_iteration(uint16_t *julia_set,
                      long double real,

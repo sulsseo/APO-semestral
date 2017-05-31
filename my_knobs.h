@@ -12,7 +12,7 @@
 #include "mzapo_phys.h"
 
 /**
- *  TODO docu
+ * work for knobhandle thread. listen to knob changes and return values to pointers
  *
  * @param positionX
  * @param positionY
@@ -33,6 +33,6 @@ void handle_knobs(long double *positionX,
                   bool *finished);
 
 /**
- * TODO docu
+ * save initial possition of knob spinners
  */
 void get_init_position();
