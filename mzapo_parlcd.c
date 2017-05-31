@@ -227,13 +227,11 @@ void parlcd_hx8357_init(unsigned char *parlcd_mem_base) {
 #endif
 }
 
-void drawdisplay(uint16_t *data, unsigned char *parlcd_mem_base) {
-//    const int width = 480;
-//    const int height = 320;
+void draw_display(uint16_t *data, unsigned char *parlcd_mem_base) {
 
-    /*     W
+    /*     W 480
      * * * * * * * * * * * * *
-     * >                     * H
+     * >                     * H 320
      *                       *
      *                       *
      * * * * * * * * * * * * *

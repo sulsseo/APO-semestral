@@ -8,9 +8,9 @@ CFLAGS =-g -std=gnu99 -O1 -Wall
 CXXFLAGS = -g -std=gnu++11 -O1 -Wall
 LDFLAGS = -lrt -lpthread
 
-SOURCES = main.cpp my_knobs_handler.cpp my_painter.cpp font_rom8x16.c font_prop14x16.c mzapo_phys.c mzapo_parlcd.c
+SOURCES = main.cpp my_knobs.cpp my_painter.cpp font_rom8x16.c font_prop14x16.c mzapo_phys.c mzapo_parlcd.c
 TARGET_EXE = app
-TARGET_IP ?= 192.168.202.150
+TARGET_IP ?= 192.168.202.161
 TARGET_DIR ?= /tmp/$(shell whoami)
 TARGET_USER ?= root
 

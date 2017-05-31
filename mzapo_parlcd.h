@@ -16,7 +16,6 @@
 #define MZAPO_PARLCD_H
 
 #include <stdint.h>
-#include "my_const.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,7 +31,7 @@ void parlcd_delay(int msec);
 
 void parlcd_hx8357_init(unsigned char *parlcd_mem_base);
 
-void drawdisplay(uint16_t *data, unsigned char *parlcd_mem_base);
+void draw_display(uint16_t *data, unsigned char *parlcd_mem_base);
 
 
 #ifdef __cplusplus
