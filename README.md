@@ -10,8 +10,8 @@ Summer semester 2017 on CTU - Computer Architectures semestal project
     YES [3b] výpis nastavených hodnot parametrů na display ve formě textu (viz cvičení 7)
     [2b] zobrazení menu nebo jiné řešení pro úpravu jasu, barevné palety atd
     [2b] vzdálené nastavování parametrů z PC, například zprávou přes UDP
-    [2b] režim pro výkladní skříň, parametry se periodicky mění tak, aby se display trvale měnil a střídaly se zajímavé obrázky/efekty
+    YES [2b] režim pro výkladní skříň, parametry se periodicky mění tak, aby se display trvale měnil a střídaly se zajímavé obrázky/efekty
 povinná dokumentace (body pouze v případě finálního funkčního řešení)
 
-    [2b] za uživatelskou příručku
-    [2b] za technickou zprávu]
+    TODO [2b] za uživatelskou příručku
+    TODO [2b] za technickou zprávu]
