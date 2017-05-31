@@ -31,6 +31,12 @@ void parlcd_delay(int msec);
 
 void parlcd_hx8357_init(unsigned char *parlcd_mem_base);
 
+/**
+ * TODO docu
+ *
+ * @param data
+ * @param parlcd_mem_base
+ * */
 void draw_display(uint16_t *data, unsigned char *parlcd_mem_base);
 
 

@@ -1,14 +1,4 @@
-#include <cmath>
-#include <iostream>
-#include <thread>
-#include <complex>
-
-#include "mzapo_parlcd.h"
-#include "mzapo_regs.h"
-#include "mzapo_phys.h"
 #include "my_painter.h"
-#include "font_types.h"
-
 
 const long double IMAGINARY_START = (JULIA_MAX * HEIGHT) / (WIDTH * -2.0);
 const long double REAL_STEP = JULIA_MAX / WIDTH;
@@ -24,16 +14,6 @@ long double animation_imag[] = {0.6, 0, 0.01, 0.1428, -0.3842, -0.2321, 0.156, 0
 int displayInfo = FALSE;
 int animation = FALSE;
 
-/**
- *
- *
- * @param positionX
- * @param positionY
- * 
- * @param const_real
- * @param const_imag
- * @return
- */
 void get_julia(uint16_t *julia_set,
                long double *positionX,
                long double *positionY,

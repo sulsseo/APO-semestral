@@ -12,10 +12,7 @@
 // convergation limit
 #define JULIA_MAX 4.0
 
+// boolean definition
 #define TRUE 1
 #define FALSE 0
 
-//struct complex_num {
-//    long double real;
-//    long double imag;
-//};

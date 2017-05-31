@@ -1,8 +1,42 @@
 #pragma once
+
+// some c++ logic
 #include <mutex>
+#include <cmath>
+#include <iostream>
+#include <thread>
+#include <complex>
+
+// my headers
+#include "my_painter.h"
 #include "my_const.h"
 
+// libraries
+#include "mzapo_parlcd.h"
+#include "mzapo_regs.h"
+#include "mzapo_phys.h"
+
+// text
+#include "font_types.h"
+
+
 /**
+ * TODO docu
+ *
+ * @param julia_set
+ * @param positionX
+ * @param positionY
+ * @param const_real
+ * @param const_imag
+ */
+void get_julia(uint16_t *julia_set,
+               long double *positionX,
+               long double *positionY,
+               long double *const_real,
+               long double *const_imag);
+
+/**
+ * TODO docu
  *
  * @param positionX
  * @param positionY
@@ -25,6 +59,7 @@ void draw_fractal(long double *positionX,
                   bool *finished);
 
 /**
+ * TODO docu
  *
  * @param data
  * @param c
@@ -43,6 +78,7 @@ void put_char_there(uint16_t data[HEIGHT*WIDTH],
                     int scale);
 
 /**
+ * TODO docu
  *
  * @param data
  * @param single
@@ -63,6 +99,7 @@ void write_to_data(uint16_t data[HEIGHT*WIDTH],
                    int size);
 
 /**
+ * TODO docu
  *
  * @param julia_set
  * @param real

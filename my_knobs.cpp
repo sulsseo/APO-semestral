@@ -1,19 +1,5 @@
 #define _POSIX_C_SOURCE 200112L
 
-#include <sys/mman.h>
-#include <cstdlib>
-#include <cstdio>
-#include <cstdint>
-#include <unistd.h>
-#include <fcntl.h>
-#include <malloc.h>
-#include <cstring>
-#include <byteswap.h>
-#include <getopt.h>
-#include <cinttypes>
-#include <ctime>
-
-#include "mzapo_phys.h"
 #include "my_knobs.h"
 
 /*******************************************************************
@@ -60,7 +46,6 @@ uint32_t get_knobs_value(unsigned char *mem_base) {
     return rgb_knobs_value;
 }
 
-// TODO get another value from knob spinner - may help with position
 long double divide_value(long double knob_value) {
     return (knob_value - 128.0) / 64.0;
 }
