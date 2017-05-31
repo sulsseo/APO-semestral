@@ -15,11 +15,15 @@ int main(int argc, char *argv[]) {
 //    long double positionX = 1.3125;
 //    long double positionY = -2;
 
-    long double positionX = 0.0;
-    long double positionY = 0.0;
+    long double positionX = 0.56;
+    long double positionY = -0.62;
 
-    long double constantReal = -0.678;
-    long double constantImaginary = 0.3125;
+//    long double constant_real = -0.678;
+//    long double constant_imaginary = 0.3125;
+
+
+    long double constant_real = 0.285;
+    long double constant_imaginary = 0.01;
 
     /* button status */
     int red_click = 0;
@@ -32,8 +36,8 @@ int main(int argc, char *argv[]) {
     bool finished = false;
     std::mutex mutex;
 
-    std::thread knobs_thread = std::thread(handle_knobs, &positionX, &positionY, &constantImaginary, &red_click, &green_click, &blue_click, &mutex, &finished);
-    std::thread drawing_thread(draw_fractal, &positionX, &positionY, &constantReal, &constantImaginary, &red_click, &green_click, &blue_click, &mutex, &finished);
+    std::thread knobs_thread = std::thread(handle_knobs, &positionX, &positionY, &constant_imaginary, &red_click, &green_click, &blue_click, &mutex, &finished);
+    std::thread drawing_thread(draw_fractal, &positionX, &positionY, &constant_real, &constant_imaginary, &red_click, &green_click, &blue_click, &mutex, &finished);
 
     // close connection on hit some key
     getchar();

@@ -15,7 +15,7 @@
 #define TRUE 1
 #define FALSE 0
 
-struct complex_num {
-    long double real;
-    long double imag;
-};
+//struct complex_num {
+//    long double real;
+//    long double imag;
+//};

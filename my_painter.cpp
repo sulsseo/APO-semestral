@@ -10,8 +10,6 @@
 #include "font_types.h"
 
 
-const long double JULIA_LIMIT = 4.0;
-
 const long double IMAGINARY_START = (JULIA_MAX * HEIGHT) / (WIDTH * -2.0);
 const long double REAL_STEP = JULIA_MAX / WIDTH;
 
@@ -19,7 +17,12 @@ const long double IMAGINARY_STEP = (-2.0 * IMAGINARY_START) / HEIGHT;
 
 long double previousX = 999.9, previousY = 999.9, previousImag = 999.9;
 
+long double animation_real[] = {-0.4, 0.285, 0.285, 0.45, -0.70176, -0.835, -0.8, -0.7269, 0};
+long double animation_imag[] = {0.6, 0, 0.01, 0.1428, -0.3842, -0.2321, 0.156, 0.1889, -0.8};
+
+
 int displayInfo = FALSE;
+int animation = FALSE;
 
 /**
  *
@@ -108,36 +111,63 @@ void draw_fractal(long double *positionX,
     std::unique_lock<std::mutex> thread_lock(*mutex);
     thread_lock.unlock();
 
+    int index = 0;
+
     // working thread
     while (!*finished) {
         thread_lock.lock();
 
-        // julia painter
-        if ((*red_click > 0) & !displayInfo) {
-            displayInfo = TRUE;
-            get_julia(julia_set, positionX, positionY, const_real, const_imag);
-        } else if ((*red_click > 0) & displayInfo) {
-            displayInfo = FALSE;
-            get_julia(julia_set, positionX, positionY, const_real, const_imag);
+        if (!animation) {
+
+            // julia painter
+            if ((*red_click > 0) & !displayInfo) {
+                displayInfo = TRUE;
+                get_julia(julia_set, positionX, positionY, const_real, const_imag);
+
+            } else if ((*red_click > 0) & displayInfo) {
+                displayInfo = FALSE;
+                get_julia(julia_set, positionX, positionY, const_real, const_imag);
+
+            } else if ((*green_click > 0) & !animation) {
+                animation = TRUE;
+            }
+
+            if (previousX != *positionX || previousY != *positionY || previousImag != *const_imag) {
+                previousX = *positionX;
+                previousY = *positionY;
+                previousImag = *const_imag;
+                get_julia(julia_set, positionX, positionY, const_real, const_imag);
+            }
+
+            if (displayInfo) {
+                char string[256];
+                int n = sprintf(string, "x=%Lf y=%Lf, c=%Lf", *positionX, *positionY, *const_imag);
+                write_to_data(julia_set, string, 0, 0, 0xFF00, 0, 1, n);
+            }
+
+            draw_display(julia_set, parlcd_mem_base);
+
+            thread_lock.unlock();
+            std::this_thread::sleep_for(std::chrono::milliseconds(50));
+
+        } else {
+            if ((*green_click > 0)) {
+                animation = FALSE;
+                index = 0;
+            }
+
+            get_julia(julia_set, positionX, positionY, &animation_real[index], &animation_imag[index]);
+            if (index != 8) {
+                index++;
+            } else {
+                index = 0;
+            }
+
+            draw_display(julia_set, parlcd_mem_base);
+
+            thread_lock.unlock();
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
-
-        if (previousX != *positionX || previousY != *positionY || previousImag != *const_imag) {
-            previousX = *positionX;
-            previousY = *positionY;
-            previousImag = *const_imag;
-            get_julia(julia_set, positionX, positionY, const_real, const_imag);
-        }
-
-        if (displayInfo) {
-            char string[256];
-            int n = sprintf(string, "x=%Lf y=%Lf, c=%Lf", *positionX, *positionY, *const_imag);
-            write_to_data(julia_set, string, 0, 0, 0xFF00, 0, 1, n);
-        }
-
-        draw_display(julia_set, parlcd_mem_base);
-
-        thread_lock.unlock();
-        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
 }
 
