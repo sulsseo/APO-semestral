@@ -13,5 +13,5 @@ Summer semester 2017 on CTU - Computer Architectures semestal project
     YES [2b] režim pro výkladní skříň, parametry se periodicky mění tak, aby se display trvale měnil a střídaly se zajímavé obrázky/efekty
 povinná dokumentace (body pouze v případě finálního funkčního řešení)
 
-    TODO [2b] za uživatelskou příručku
-    TODO [2b] za technickou zprávu]
+    [2b] za uživatelskou příručku
+    [2b] za technickou zprávu
